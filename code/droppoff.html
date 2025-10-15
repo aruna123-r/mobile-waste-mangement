@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drop-off Locations | Mobile Waste Management</title>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+<!-- Leaflet Routing Machine CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+<button id="locate-btn" style="position:absolute; top:60px; left:10px; z-index:1000; padding:8px 12px; background:#56ab2f; color:white; border:none; border-radius:6px; cursor:pointer;">
+  Use My Location
+</button>
+
+<style>
+  body, html { margin: 0; height: 100%; }
+  #map { height: 100vh; width: 100%; }
+  h1 {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    z-index: 1000;
+  }
+</style>
+</head>
+<body>
+<h1>Recycle Drop-Off Centers</h1>
+<div id="map"></div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<!-- Leaflet Routing Machine -->
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+
+<script>
+  const map = L.map('map').setView([17.4350, 78.4980], 13);
+
+  // OpenStreetMap tiles
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+
+  // Recycle centers
+  const centers = [
+    { name: "EcoMobile Center, Main Road", lat: 17.4350, lng: 78.4980 },
+    { name: "Recyclers Hub, North Avenue", lat: 17.4500, lng: 78.5000 },
+    { name: "Green Tech Plaza, Sector 21", lat: 17.4200, lng: 78.4800 }
+  ];
+
+  let userMarker;
+
+  // Get current location
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(pos => {
+      const userLat = pos.coords.latitude;
+      const userLng = pos.coords.longitude;
+
+      userMarker = L.marker([userLat, userLng], {
+        title: "Your Location",
+        icon: L.icon({iconUrl:'https://maps.google.com/mapfiles/ms/icons/green-dot.png', iconSize:[32,32], iconAnchor:[16,32]})
+      }).addTo(map).bindPopup("You are here").openPopup();
+
+      map.setView([userLat, userLng], 13);
+
+      // Draw routes to all centers automatically
+      centers.forEach(center => {
+        L.Routing.control({
+          waypoints: [
+            L.latLng(userLat, userLng),
+            L.latLng(center.lat, center.lng)
+          ],
+          lineOptions: { styles: [{color: 'blue', weight: 4}] },
+          addWaypoints: false,
+          draggableWaypoints: false,
+          fitSelectedRoutes: false,
+          show: false,
+          router: L.Routing.osrmv1({ serviceUrl: 'https://router.project-osrm.org/route/v1' })
+        }).addTo(map);
+      });
+
+    }, () => { alert("Geolocation failed."); });
+  } else {
+    alert("Geolocation not supported.");
+  }
+
+  // Add markers for centers
+  centers.forEach(center => {
+    L.marker([center.lat, center.lng])
+      .addTo(map)
+      .bindPopup(`<strong>${center.name}</strong>`);
+  });
+</script>
+</body>
+</html>

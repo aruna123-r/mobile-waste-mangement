@@ -1,0 +1,412 @@
+/* 🌿 Global Styles */
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  background: linear-gradient(to bottom right, #e9f9ef, #d0f1dc);
+  margin: 0;
+  padding: 0;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* 🌳 Header */
+header {
+  height: 100px; /* or try 120px */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #0b8b32, #15a85c);
+  color: white;
+  padding: 0 2.5rem; /* horizontal padding only */
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+
+h1 {
+  margin-bottom: 0.4rem;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+}
+
+header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* 📘 Section Base */
+section {
+  margin: 2.5rem auto;
+  max-width: 900px;
+  background: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+section:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+/* 🌱 Tips Section */
+#tips h2 {
+  text-align: center;
+  color: #0b8b32;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+#tips ol {
+  padding-left: 1.2rem;
+  counter-reset: tip;
+}
+
+#tips li {
+  margin: 0.8rem 0;
+  padding: 0.7rem 1rem;
+  background: #f5fff8;
+  border-left: 5px solid #0b8b32;
+  border-radius: 6px;
+  list-style: none;
+  counter-increment: tip;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+
+#tips li::before {
+  content: counter(tip);
+  position: absolute;
+  left: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #0b8b32;
+  color: #fff;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  border-radius: 50%;
+  line-height: 25px;
+  font-weight: bold;
+}
+
+#tips li:hover {
+  background: #e2f9eb;
+  transform: translateX(5px);
+}
+
+/* 🧩 Services Section */
+#services h2 {
+  text-align: center;
+  color: #0b8b32;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.service-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.8rem;
+}
+
+.service-card {
+  flex: 1 1 260px;
+  background: #f8fff9;
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.07);
+  text-align: center;
+  transition: all 0.3s ease;
+  border-top: 5px solid #15a85c;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.service-card h3 {
+  color: #084b2c;
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.service-card p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.service-card button {
+  margin-top: 0.5rem;
+  padding: 0.6rem 1.5rem;
+  background: linear-gradient(90deg, #0b8b32, #15a85c);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.service-card button:hover {
+  background: linear-gradient(90deg, #087a2d, #0b8b32);
+  transform: scale(1.05);
+}
+
+/* 🌾 Hidden Sections */
+.hidden {
+  display: none;
+}
+
+/* 🌍 Footer */
+footer {
+  text-align: center;
+  background: linear-gradient(90deg, #0b8b32, #15a85c);
+  color: #fff;
+  padding: 1rem 0;
+  font-size: 0.95rem;
+  margin-top: 2rem;
+}
+
+/* 📱 Responsive */
+@media (max-width: 750px) {
+  .service-grid {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  section {
+    padding: 1.5rem;
+  }
+  h1 {
+    font-size: 1.8rem;
+  }
+}
+/* 🌿 Header container */
+header {
+  display: flex;
+  justify-content: space-between;   /* Left title + Right nav */
+  align-items: center;
+  background: linear-gradient(90deg, #0b8b32, #15a85c);
+  color: white;
+  padding: 1.2rem 2rem;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+  flex-wrap: wrap; /* helps on smaller screens */
+}
+
+/* 🏷️ Title and tagline (left) */
+.header-left h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+.header-left p {
+  margin: 0.3rem 0 0;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* 🌐 Navigation (right side) */
+.header-right {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* 🌈 Navigation Links */
+.header-right a {
+  position: relative;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+/* ✨ Hover Effects */
+.header-right a:hover {
+  background: white;
+  color: #0b8b32;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+  transform: translateY(-3px);
+}
+
+/* 🌟 Optional glowing underline (animated) */
+.header-right a::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width 0.3s ease;
+}
+.header-right a:hover::after {
+  width: 60%;
+}
+
+/* 📱 Responsive behavior */
+@media (max-width: 750px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .header-right {
+    margin-top: 1rem;
+  }
+}
+/* 🌿 Global Styles */
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  background: linear-gradient(to bottom right, #e9f9ef, #d0f1dc);
+  margin: 0;
+  padding: 0;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* 🌳 Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #0b8b32, #15a85c);
+  color: white;
+  padding: 2rem 2.5rem;  /* increased height */
+  flex-wrap: wrap;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+}
+
+/* Left side of header */
+.header-left h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.header-left p {
+  margin: 0.3rem 0 0;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* Right side navigation */
+.header-right {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header-right a {
+  position: relative;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.header-right a:hover {
+  background: white;
+  color: #0b8b32;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+  transform: translateY(-3px);
+}
+
+.header-right a.active {
+  background: white;
+  color: #0b8b32;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+/* 🌱 About Section */
+about {
+  text-align: center;
+  margin: 2.5rem auto;
+  max-width: 900px;
+  padding: 2rem;
+}
+
+about h2 {
+  color: #0b8b32;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+about p {
+  font-size: 1.05rem;
+  color: #333;
+  max-width: 850px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+}
+
+/* 📘 About Cards Grid */
+.about-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.8rem;
+}
+
+.about-card {
+  flex: 1 1 260px;
+  background: #f8fff9;
+  border-top: 5px solid #15a85c;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.07);
+  transition: all 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+.about-card h3 {
+  color: #0b8b32;
+  margin-bottom: 0.7rem;
+  font-size: 1.2rem;
+}
+
+.about-card p {
+  color: #444;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+/* Login / Logout Buttons */
+#login-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 0.45rem 1.2rem;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background 0.3s, transform 0.2s;
+    margin-left: 0.5rem;
+}
+
+#login-btn:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
+
+
+
+
+

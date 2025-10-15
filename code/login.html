@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | Mobile Waste Management</title>
+<style>
+body {
+    background: linear-gradient(to right, #56ab2f, #a8e063);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+.login-container {
+    background: #ffffffcc;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px 0 rgba(0,0,0,0.07);
+    padding: 2rem 2.5rem;
+    max-width: 330px;
+    width: 90%;
+}
+.login-container h2 {
+    text-align: center;
+    color: #417d34;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+.toggle-btns {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+.toggle-btns button {
+    border: none;
+    background: transparent;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    color: #355c2c;
+    font-size: 15px;
+}
+.toggle-btns button.active {
+    border-bottom: 2px solid #56ab2f;
+}
+.input-group {
+    margin-bottom: 1.1rem;
+}
+.input-group label {
+    display: block;
+    color: #355c2c;
+    margin-bottom: 0.35rem;
+    font-size: 15px;
+}
+.input-group input {
+    width: 100%;
+    padding: 0.75rem 0.5rem;
+    border: 1px solid #cbe7ba;
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.2s;
+}
+.input-group input:focus {
+    border: 1.5px solid #56ab2f;
+}
+.login-btn {
+    width: 100%;
+    padding: 0.75rem 0;
+    background: #56ab2f;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+    transition: background 0.25s;
+}
+.login-btn:hover {
+    background: #417d34;
+}
+.forgot-link {
+    display: block;
+    text-align: right;
+    margin-top: 0.65rem;
+    color: #355c2c;
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+}
+.forgot-link:hover {
+    color: #56ab2f;
+}
+#error-msg {
+    color: red;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    display: none;
+}
+@media (max-width: 400px) {
+    .login-container {
+        padding: 1.3rem 1rem;
+    }
+}
+</style>
+</head>
+<body>
+<div class="login-container">
+    <h2 id="form-title">Login</h2>
+
+    <div class="toggle-btns">
+        <button id="login-btn" class="active">Login</button>
+        <button id="signup-btn">Create Account</button>
+    </div>
+
+    <div id="error-msg">Invalid credentials!</div>
+
+    <form id="auth-form">
+        <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autofocus>
+        </div>
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button class="login-btn" type="submit" id="submit-btn">Login</button>
+    </form>
+</div>
+
+<script>
+// Toggle between login and signup
+const loginBtn = document.getElementById('login-btn');
+const signupBtn = document.getElementById('signup-btn');
+const formTitle = document.getElementById('form-title');
+const submitBtn = document.getElementById('submit-btn');
+const errorMsg = document.getElementById('error-msg');
+
+let mode = 'login'; // default
+
+loginBtn.addEventListener('click', () => {
+    mode = 'login';
+    loginBtn.classList.add('active');
+    signupBtn.classList.remove('active');
+    formTitle.textContent = 'Login';
+    submitBtn.textContent = 'Login';
+    errorMsg.style.display = 'none';
+});
+
+signupBtn.addEventListener('click', () => {
+    mode = 'signup';
+    signupBtn.classList.add('active');
+    loginBtn.classList.remove('active');
+    formTitle.textContent = 'Create Account';
+    submitBtn.textContent = 'Sign Up';
+    errorMsg.style.display = 'none';
+});
+
+// Handle form submit
+document.getElementById('auth-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+
+    if (mode === 'signup') {
+        // Save credentials to localStorage
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('userPassword', password);
+        alert('Account created successfully! Please login.');
+        loginBtn.click();
+    } else {
+        // Login check
+        const savedEmail = localStorage.getItem('userEmail');
+        const savedPassword = localStorage.getItem('userPassword');
+
+        if (email === savedEmail && password === savedPassword) {
+            // Save login session
+            localStorage.setItem('loggedInUser', email);
+            // Redirect to home
+            window.location.href = 'index.html';
+        } else {
+            errorMsg.style.display = 'block';
+        }
+    }
+});
+
+</script>
+</body>
+</html>

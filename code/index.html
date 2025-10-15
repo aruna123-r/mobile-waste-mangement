@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mobile Waste Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    
+  <div class="header-left">
+    <h1>Mobile Waste Management & Recycling</h1>
+    <p>Promoting responsible mobile recycling and e-waste awareness</p>
+  </div>
+  
+
+  
+  <nav class="header-right">
+  <a href="index.html" class="nav-link">Home</a>
+  <a href="about.html" class="nav-link">About</a>
+  <a href="droppoff.html" class="nav-link">Drop-off</a>
+  <a href="game.html" class="nav-link">Game</a>
+  <a href="quiz.html" class="nav-link">Quiz</a>
+  <a href="login.html" class="nav-link">Login</a>
+  <a href="logout.html" class="nav-link">Logout</a>
+   
+
+
+  
+</nav>
+
+</header>
+
+  
+  <section id="tips">
+    <h2>6 Tips for Recycling Your Mobile</h2>
+    <ol>
+      <li>Backup your data before recycling your mobile.</li>
+      <li>Remove SIM and memory cards from the device.</li>
+      <li>Perform a factory reset to erase personal information.</li>
+      <li>Check for local certified e-waste recyclers.</li>
+      <li>Donate usable devices to organizations that refurbish phones.</li>
+      <li>Participate in manufacturer or retailer take-back programs.</li>
+    </ol>
+  </section>
+  <!-- 🌿 Recycling Steps Section -->
+<section id="recycling-steps">
+  <h2>Steps to Recycle Your Mobile</h2>
+  <div class="steps-container">
+    <div class="step-card">
+      <div class="step-number">1</div>
+      <h3>Backup Data</h3>
+      <p>Save all your photos, contacts, and important files before recycling.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-number">2</div>
+      <h3>Remove SIM & Memory Cards</h3>
+      <p>Take out SIM cards and memory cards from your device.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-number">3</div>
+      <h3>Factory Reset</h3>
+      <p>Erase all personal data by performing a factory reset.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-number">4</div>
+      <h3>Find Certified Recyclers</h3>
+      <p>Locate local certified e-waste recycling centers.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-number">5</div>
+      <h3>Donate Usable Devices</h3>
+      <p>Give old phones to organizations that refurbish them.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-number">6</div>
+      <h3>Take-Back Programs</h3>
+      <p>Participate in manufacturer or retailer mobile take-back schemes.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+/* 🌿 Recycling Steps Styles */
+#recycling-steps {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+#recycling-steps h2 {
+  color: #0b8b32;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.steps-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.step-card {
+  background: #f8fff9;
+  flex: 1 1 180px;
+  min-width: 180px;
+  max-width: 220px;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 1rem;
+  background: #0b8b32;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.step-card h3 {
+  color: #084b2c;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.step-card p {
+  color: #444;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* 📱 Responsive */
+@media (max-width: 900px) {
+  .steps-container {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .steps-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .step-card {
+    max-width: 90%;
+  }
+}
+</style>
+
+  
+  <section id="services">
+    <h2>Our Services</h2>
+    <div class="service-grid">
+      <div class="service-card">
+        <h3>Quiz & FAQs</h3>
+        <p>Test your recycling knowledge or read FAQs about safe mobile disposal.</p>
+        <button onclick="window.location.href='#quiz'">Open Quiz/FAQs</button>
+      </div>
+      <div class="service-card">
+        <h3>Drop-Off Locations</h3>
+        <p>Locate nearby certified mobile waste drop-off centers.</p>
+        <button onclick="window.location.href='#dropoff'">Show Locations</button>
+      </div>
+      <div class="service-card">
+        <h3>Awareness Games</h3>
+        <p>Play interactive games to learn about recycling habits.</p>
+        <button onclick="window.location.href='game.html'">Play Game</button>
+      </div>
+    </div>
+  </section>
+  
+  <section id="quiz" class="hidden">
+    <h2>Quiz & FAQs</h2>
+    
+    <button onclick="window.location.href='quiz.html'">Open Quiz/FAQs</button>
+
+  </section>
+  <section id="dropoff" class="hidden">
+    <h2>Drop-Off Locations</h2>
+    <ul>
+      <li>EcoMobile Center, Main Road</li>
+      <li>Recyclers Hub, North Avenue</li>
+      <li>Green Tech Plaza, Sector 21</li>
+    </ul>
+    <button onclick="document.getElementById('dropoff').classList.add('hidden')">Close</button>
+  </section>
+  <section id="games" class="hidden">
+    <h2>Awareness Games</h2>
+    <p>Catch the Recyclables and sort your e-waste correctly!</p>
+    <button onclick="document.getElementById('games').classList.add('hidden')">Close</button>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Mobile Waste Management. All rights reserved.</p>
+  </footer>
+  
+  <script>
+    document.querySelectorAll('.service-card button').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('section.hidden').forEach(s => s.classList.add('hidden'));
+        const target = this.getAttribute('onclick').match(/#(.*)'/)[1];
+        document.getElementById(target).classList.remove('hidden');
+      });
+    });
+  </script>
+</body>
+</html>

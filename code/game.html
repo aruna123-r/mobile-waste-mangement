@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Awareness Game | Mobile Waste Management</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background: linear-gradient(to bottom right, #e9f9ef, #d0f1dc);
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(90deg, #0b8b32, #15a85c);
+      color: white;
+      padding: 2rem 2.5rem;
+      flex-wrap: wrap;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+    }
+
+    .header-left h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .header-left p {
+      margin: 0.3rem 0 0;
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .header-right {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .header-right a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.15);
+      transition: all 0.3s ease;
+    }
+
+    .header-right a:hover {
+      background: white;
+      color: #0b8b32;
+    }
+
+    h2 {
+      color: #0b8b32;
+      margin-top: 2rem;
+    }
+
+    /* 🕹️ Game Container */
+    #game-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin: 2rem auto;
+      max-width: 900px;
+    }
+
+    /* 🟩 Waste Items */
+    .waste-item {
+      width: 120px;
+      height: 120px;
+      border-radius: 10px;
+      background: #f8fff9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      cursor: grab;
+      font-weight: bold;
+      font-size: 0.95rem;
+      user-select: none;
+      transition: transform 0.2s;
+    }
+
+    .waste-item:active {
+      transform: scale(1.1);
+    }
+
+    /* 🗑️ Bins */
+    .bin {
+      width: 200px;
+      min-height: 150px;
+      background: #f0f0f0;
+      border-radius: 12px;
+      border: 3px dashed #0b8b32;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 1rem;
+      font-weight: bold;
+      color: #0b8b32;
+      font-size: 1rem;
+    }
+
+    #bins-container {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin: 2rem auto;
+      flex-wrap: wrap;
+    }
+
+    #score {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #0b8b32;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-left">
+      <h1>Mobile Waste Awareness Game</h1>
+      <p>Learn how to recycle mobiles correctly!</p>
+    </div>
+    <nav class="header-right">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="dropoff.html">Drop-off</a>
+      <a href="game.html" class="active">Game</a>
+    </nav>
+  </header>
+
+  <h2>Drag the items to the correct bin!</h2>
+
+  <!-- Game Items -->
+  <div id="game-container">
+    <div class="waste-item" draggable="true" data-type="battery">Battery</div>
+    <div class="waste-item" draggable="true" data-type="screen">Broken Screen</div>
+    <div class="waste-item" draggable="true" data-type="plastic">Plastic Case</div>
+    <div class="waste-item" draggable="true" data-type="charger">Charger</div>
+  </div>
+
+  <!-- Bins -->
+  <div id="bins-container">
+    <div class="bin" data-bin="battery">Battery Bin</div>
+    <div class="bin" data-bin="screen">E-Waste Bin</div>
+    <div class="bin" data-bin="plastic">Plastic Bin</div>
+  </div>
+
+  <div id="score">Score: 0</div>
+
+  <!-- JS for drag and drop -->
+  <script>
+    const items = document.querySelectorAll('.waste-item');
+    const bins = document.querySelectorAll('.bin');
+    let score = 0;
+
+    items.forEach(item => {
+      item.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('type', item.dataset.type);
+      });
+    });
+
+    bins.forEach(bin => {
+      bin.addEventListener('dragover', e => {
+        e.preventDefault();
+      });
+
+      bin.addEventListener('drop', e => {
+        e.preventDefault();
+        const type = e.dataTransfer.getData('type');
+        if (type === bin.dataset.bin) {
+          score += 1;
+          document.getElementById('score').textContent = `Score: ${score}`;
+          const item = document.querySelector(`.waste-item[data-type='${type}']`);
+          item.style.display = 'none';
+        } else {
+          alert('Wrong bin! Try again.');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
